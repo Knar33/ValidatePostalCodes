@@ -25,11 +25,13 @@ namespace ValidatePostalCodes
                     postalCodes.Add(new PostalCodes(parts[0], parts[1]));
                 }
             }
-            if (!(postalCodes.Where(x => x.Country == "US" && x.PostalCode == "12345").Count() > 0))
+            var ps = postalCodes.Where(x => x.Country == "NL" && x.PostalCode == "2625KX");
+            if (postalCodes.Where(x => x.Country == "NL" && x.PostalCode == "2625KX").Count() == 0)
             {
-                Console.WriteLine("contains");
+                Console.WriteLine("Does not contain");
             }
             Console.ReadLine();
+
         }
     }
 
