@@ -25,7 +25,7 @@ namespace ValidatePostalCodes
                     postalCodes.Add(new PostalCodes(parts[0], parts[1]));
                 }
             }
-            var ps = postalCodes.Where(x => x.Country == "NL" && x.PostalCode == "2625KX");
+
             if (postalCodes.Where(x => x.Country == "NL" && x.PostalCode == "2625KX").Count() == 0)
             {
                 Console.WriteLine("Does not contain");
