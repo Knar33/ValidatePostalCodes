@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace ValidatePostalCodes
 {
@@ -12,7 +13,10 @@ namespace ValidatePostalCodes
         static void Main(string[] args)
         {
             List<PostalCodes> postalCodes = new List<PostalCodes>();
-            using (StreamReader reader = new StreamReader("allcountries.txt"))
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceName = "ValidatePostalCodes.allCountries.txt";
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (StreamReader reader = new StreamReader(stream))
             {
                 while (true)
                 {
@@ -26,7 +30,7 @@ namespace ValidatePostalCodes
                 }
             }
 
-            if (postalCodes.Where(x => x.Country == "NL" && x.PostalCode == "2625KX").Count() == 0)
+            if (postalCodes.Where(x => x.PostalCode == "2625").Count() == 0)
             {
                 Console.WriteLine("Does not contain");
             }
